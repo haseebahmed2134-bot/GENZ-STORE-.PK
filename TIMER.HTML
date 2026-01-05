@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .timer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-left: 5%;
+    margin-top: 25px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* "SALES END IN" Text */
+.timer-label {
+    color: #ff4757; /* Red color for urgency */
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Timer Boxes Wrapper */
+.timer-box {
+    display: flex;
+    gap: 15px;
+}
+
+/* Individual Unit Box (Hrs, Min, Sec) */
+.t-unit {
+    background: linear-gradient(145deg, #1e2433, #111827); /* Sleek Dark Gradient */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 65px;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Numbers inside the boxes */
+.t-num {
+    color: #FFFF00; /* Neon Yellow as per your theme */
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+/* Labels (Hrs, Min, Sec) */
+.t-text {
+    color: #a0aec0; /* Subdued gray */
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-top: 5px;
+    font-weight: 600; }
+</style>
+<body>
+    <div class="timer-container">
+    <div class="timer-label">Sales End In:</div>
+    <div class="timer-box">
+        <div class="t-unit">
+            <span class="t-num" id="hours">00</span>
+            <span class="t-text">Hrs</span>
+        </div>
+        <div class="t-unit">
+            <span class="t-num" id="minutes">00</span>
+            <span class="t-text">Min</span>
+        </div>
+        <div class="t-unit">
+            <span class="t-num" id="seconds">00</span>
+            <span class="t-text">Sec</span>
+        </div>
+    </div>
+</div>
+<script>
+    function startNewTimer() {
+    // --- SETTINGS ---
+    const timerVersion = "v2"; // Jab bhi naya timer chahiye ho, isse "v2", "v3" kar dena
+    const hoursCount = 72;      // Kitne ghante ka timer chahiye?
+    
+    const hDisplay = document.getElementById('hours');
+    const mDisplay = document.getElementById('minutes');
+    const sDisplay = document.getElementById('seconds');
+
+    // 1. Check karein ke is version ka timer pehle se chal raha hai?
+    let endTime = localStorage.getItem('saleEndTime_' + timerVersion);
+
+    if (!endTime) {
+        // Agar naya version hai, to naya time set karo aur purane saare timers delete kar do
+        localStorage.clear(); 
+        
+        localStorage.setItem('saleEndTime_' + timerVersion, endTime);
+    }
+
+    const timerInterval = setInterval(function () {
+        const now = new Date().getTime();
+        const distance = endTime - now;
+
+        // Calculations
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Update Display
+        hDisplay.textContent = hours < 10 ? "0" + hours : hours;
+        mDisplay.textContent = minutes < 10 ? "0" + minutes : minutes;
+        sDisplay.textContent = seconds < 10 ? "0" + seconds : seconds;
+
+        // STOP LOGIC
+        if (distance <= 0) {
+            clearInterval(timerInterval);
+            hDisplay.textContent = "00";
+            mDisplay.textContent = "00";
+            sDisplay.textContent = "00";
+            document.querySelector('.timer-label').innerHTML = "SALE ENDED!";
+        }
+    }, 1000);
+}
+
+window.onload = startNewTimer;
+</script>
+    
+</body>
+</html>

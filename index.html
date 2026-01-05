@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GenZ Store | Trendy Fashion & Everyday Essentials</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .discount-badge {
+    display: inline-block;
+    background-color: #ff4757; /* A vibrant red */
+    color: white;
+    padding: 4px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px; /* Rounded corners */
+    letter-spacing: 1px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    font-family: sans-serif;
+}
+.winter-promo-wrapper {
+    margin: 20px 0 30px 5%; /* Left side alignment */
+    perspective: 1000px;
+}
+
+.glass-tag {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1); /* Transparent glass look */
+    backdrop-filter: blur(10px); /* Blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 25px;
+    border-radius: 15px;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden; /* Shine effect ko andar rakhne ke liye */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.highlight {
+    color: #FFFF00; /* Yellow for the 50% OFF part */
+    text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+}
+
+.sparkle {
+    color: #FFFF00;
+    margin: 0 10px;
+    animation: blink 1.5s infinite;
+}
+
+/* --- Chamakne wala (Shine) Effect --- */
+.glass-tag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right, 
+        transparent, 
+        rgba(255, 255, 255, 0.4), 
+        transparent
+    );
+    transform: skewX(-25deg);
+    transition: 0.5s;
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    100% { left: 150%; }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+.slide {
+      opacity: 0;
+      transform: scale(1.05);
+      transition: all 0.8s ease-in-out;
+    }
+    .slide.active {
+      opacity: 1;
+      transform: scale(1);
+      z-index: 10;
+    }
+    
+
+
+
+  </style>
+  
+
+  
+</head>
+
+<body class="bg-navy text-white font-sans">
+
+<!-- ================= HEADER / NAVBAR ================= -->
+<header class="sticky top-0 z-50 bg-navy shadow-lg">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <div class="text-2xl font-bold tracking-wide cursor-pointer hover:scale-105 transition"
+           style="text-shadow: 0 0 10px rgba(255,255,255,0.6);">
+        GenZ Store
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="menuBtn" class="md:hidden text-3xl">☰</button>
+
+      <!-- Navigation -->
+      <nav id="menu" class="hidden md:flex space-x-8">
+        <section id="home"> </section>
+
+        <!-- Home -->
+        <a href="#home" class="hover:text-gray-300 transition border-b-2 border-transparent hover:border-white">
+          Home
+        </a>
+
+        <!-- Men -->
+        <div class="relative group">
+          <button class="hover:text-gray-300 transition">Men</button>
+          <div class="absolute hidden group-hover:block bg-white text-navy rounded shadow-lg mt-2 w-48">
+            <a class="block px-4 py-2 hover:bg-gray-100" href="men-tshirt.html">Shirt</a>
+            <a class="block px-4 py-2 hover:bg-gray-100" href="men-pants.html">Pants</a>
+            <a class="block px-4 py-2 hover:bg-gray-100" href="men-hoodies.html">Hoodies</a>
+            <a class="block px-4 py-2 hover:bg-gray-100" href="men-sportwear.html">Sports Wear</a>
+            <a class="block px-4 py-2 hover:bg-gray-100" href="men-JACKETS.html">Jackets</a>
+            <span class="block px-4 py-2 text-sm text-gray-400">Old Money (Coming Soon)</span>
+            <span class="block px-4 py-2 text-sm text-gray-400">Streetwear (Coming Soon)</span>
+          </div>
+        </div>
+
+        <!-- Women -->
+        <div class="relative group">
+          <span class="absolute -top-4 -right-8 bg-red-600 text-white text-[9px] px-1.5 py-0.5 rounded-full uppercase tracking-tighter font-bold shadow-sm">
+      COOMING Soon
+    </span>
+          <button class="hover:text-gray-300 transition">Women</button>
+          <div class="absolute hidden group-hover:block bg-white text-navy rounded shadow-lg mt-2 w-48">
+            <a class="block px-4 py-2 hover:bg-gray-100" href="wom2en-bestseller.html">Best Sellers</a>
+            <a class="block px-4 py-2 hover:bg-gray-100" href="wome2n-heavyformal.html">Heavy Formal</a>
+            <a class="block px-4 py-2 hover:bg-gray-100" href="wome2n-luxury.html">Luxury</a>
+            
+          </div>
+        </div>
+        
+        
+
+        <!-- Accessories -->
+        <div class="relative group">
+          <button class="hover:text-gray-300 transition">Accessories</button>
+          <div class="absolute hidden group-hover:block bg-white text-navy rounded shadow-lg mt-2 w-40">
+            <a class="block px-4 py-2 hover:bg-gray-100" href="accessories-watch.html">Watches</a>
+          </div>
+        </div>
+
+      </nav>
+    </div>
+  </div>
+  <!-- ❄️ Winter Sale Header -->
+
+
+  <!-- Mobile Dropdown -->
+  <div id="mobileMenu" class="hidden md:hidden bg-navy px-4 pb-4 space-y-2">
+    <a class="block py-2 border-b border-white/20">Home</a>
+    <details class="border-b border-white/20">
+      <summary class="py-2 cursor-pointer">Men</summary>
+      <div id="790" class="pl-4 text-sm space-y-1">
+        <a href="men-tshirt.html" class="group block py-3 px-3 rounded-xl text-white font-semibold transition-all duration-300 hover:bg-white/10 active:scale-95 border-b border-white/5">
+       <span class="flex items-center gap-3">
+         <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full group-hover:shadow-[0_0_8px_#22d3ee]"></span>
+         SHIRTS
+       </span>
+    </a>
+    <a href="men-pants.html" class="group block py-3 px-3 rounded-xl text-white font-semibold transition-all duration-300 hover:bg-white/10 active:scale-95 border-b border-white/5">
+       <span class="flex items-center gap-3">
+         <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full group-hover:shadow-[0_0_8px_#22d3ee]"></span>
+         PANTS
+       </span>
+    </a>
+    <a href="men-hoodies.html" class="group block py-3 px-3 rounded-xl text-white font-semibold transition-all duration-300 hover:bg-white/10 active:scale-95 border-b border-white/5">
+       <span class="flex items-center gap-3">
+         <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full group-hover:shadow-[0_0_8px_#22d3ee]"></span>
+         HOODIES
+       </span>
+    </a>
+    <a href="men-sportwear.html" class="group block py-3 px-3 rounded-xl text-white font-semibold transition-all duration-300 hover:bg-white/10 active:scale-95 border-b border-white/5">
+       <span class="flex items-center gap-3">
+         <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full group-hover:shadow-[0_0_8px_#22d3ee]"></span>
+         SPORTS WEAR
+       </span>
+    </a>
+    <a href="men-JACKETS.html" class="group block py-3 px-3 rounded-xl text-white font-semibold transition-all duration-300 hover:bg-white/10 active:scale-95 border-b border-white/5">
+       <span class="flex items-center gap-3">
+         <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full group-hover:shadow-[0_0_8px_#22d3ee]"></span>
+         JACKETS
+       </span>
+    </a>
+        
+        <p class="text-gray-400">Old Money (Coming Soon)</p>
+        <p class="text-gray-400">Streetwear (Coming Soon)</p>
+      </div>
+    </details>
+    
+
+    <details class="border-b border-white/20">
+      
+      <summary class="py-2 cursor-pointer">Women <div class="relative group">
+          <span class="absolute -top-4 -right-8 bg-red-600 text-white text-[9px] px-1.5 py-0.5 rounded-full uppercase tracking-tighter font-bold shadow-sm">
+      COOMING Soon</summary>
+      <div class="pl-4 text-sm space-y-1">
+        <a href="wom2en-bestseller.html" class="group block py-3 px-3 rounded-xl text-white font-semibold transition-all duration-300 hover:bg-white/10 active:scale-95 border-b border-white/5">
+       <span class="flex items-center gap-3">
+         <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full group-hover:shadow-[0_0_8px_#22d3ee]"></span>
+         Best Sellers
+       </span>
+    </a>
+    <a href="wome2n-heavyformal.html" class="group block py-3 px-3 rounded-xl text-white font-semibold transition-all duration-300 hover:bg-white/10 active:scale-95 border-b border-white/5">
+       <span class="flex items-center gap-3">
+         <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full group-hover:shadow-[0_0_8px_#22d3ee]"></span>
+         Heavy Formal
+       </span>
+    </a>
+    <a href="wom2en-luxury.html" class="group block py-3 px-3 rounded-xl text-white font-semibold transition-all duration-300 hover:bg-white/10 active:scale-95 border-b border-white/5">
+       <span class="flex items-center gap-3">
+         <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full group-hover:shadow-[0_0_8px_#22d3ee]"></span>
+         Luxury
+       </span>
+    </a>
+       
+      </div>
+      
+    </details>
+
+    <details>
+      <summary class="py-2 cursor-pointer">Accessories</summary>
+      <div class="pl-4 text-sm">
+        <a href="accessories.html" class="group block py-3 px-3 rounded-xl text-white font-semibold transition-all duration-300 hover:bg-white/10 active:scale-95 border-b border-white/5">
+       <span class="flex items-center gap-3">
+         <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full group-hover:shadow-[0_0_8px_#22d3ee]"></span>
+         Watches
+       </span>
+    </a>
+        
+      </div>
+    </details>
+    <details>
+      <summary class="py-2 cursor-pointer">HN-FOODS</summary>
+      <div class="pl-4 text-sm">
+        <a href="HNFOOD2S.HTML" class="group block py-3 px-3 rounded-xl text-white font-semibold transition-all duration-300 hover:bg-white/10 active:scale-95 border-b border-white/5">
+       <span class="flex items-center gap-3">
+         <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full group-hover:shadow-[0_0_8px_#22d3ee]"></span>
+         TALBINA
+       </span>
+    </a>
+        
+      </div>
+    </details>
+     <a class="block py-2 border-b border-white/20" href="#CONTACT">Contact us</a>
+  </div>
+  
+</header>
+<div class="winter-promo-wrapper">
+    <div class="glass-tag">
+        <span class="sparkle">✦</span>
+        WINTER SALE <span class="highlight">50% OFF</span> NEW OPENING
+        <span class="sparkle">✦</span>
+    </div>
+</div>
+<section class="relative w-full h-[90vh] overflow-hidden">
+
+  <!-- Slide 1 -->
+  <div class="slide active absolute inset-0">
+    <img src="3.webp" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+      <div class="text-center">
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-wide">GENZ FASHION</h1>
+        <p class="mt-4 text-lg text-gray-300">Wear Your Vibe</p>
+        <button class="mt-6 px-6 py-3 bg-white text-black font-semibold rounded-full hover:scale-105 transition">
+          <a href="#PRODUCTS">Shop Now</a>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide absolute inset-0">
+    <img src="PACK OF 5 SHIRT.jpg" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+      <h2 class="text-6xl font-bold"></h2>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide absolute inset-0">
+    <img src="blueaddidas.jpg" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+      <h2 class="text-6xl font-bold"></h2>
+    </div>
+  </div>
+
+  <!-- Arrows -->
+  <button onclick="prevSlide()" class="absolute left-6 top-1/2 -translate-y-1/2 bg-white/30 p-3 rounded-full hover:bg-white/60">
+    ❮
+  </button>
+
+  <button onclick="nextSlide()" class="absolute right-6 top-1/2 -translate-y-1/2 bg-white/30 p-3 rounded-full hover:bg-white/60">
+    ❯
+  </button>
+
+  <!-- Dots -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
+    <span class="dot w-3 h-3 bg-white rounded-full cursor-pointer"></span>
+    <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer"></span>
+    <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer"></span>
+  </div>
+
+</section>
+
+
+
+
+<section id="PRODUCTS"></section>
+<!-- ================= PRODUCTS SECTION ================= -->
+<section class="max-w-7xl mx-auto px-6 py-16">
+  <h2 class="text-4xl font-bold mb-10 text-center">Trending Products</h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+    <!-- Product Card -->
+    <div class="bg-white text-navy rounded-xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="2shirts.jpg" class="w-full h-64 object-cover">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Men's Fleece Printed Sweatshirt, Pack Of 2</h3>
+        <p class="font-bold mt-1">Rs. 1,200</p>
+        <div class="discount-badge">50% OFF</div>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20this%20product"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="bg-white text-navy rounded-xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="3.webp">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Bundle of 3 Decent Plain Sweatshirts for Men</h3>
+        <p class="font-bold mt-1">Rs. 1,350</p>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20this%20product"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="bg-white text-navy rounded-xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="blueaddidas.jpg">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Men's Dri Fit Slim Fit Polo Shirt </h3>
+        <p class="font-bold mt-1">Rs. 1,300</p>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20this%20product"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="bg-white text-navy rounded-xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="7.webp">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Noir Relaxed-Fit Trousers</h3>
+        <p class="font-bold mt-1">Rs. 2,300</p>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20this%20product"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="bg-white text-navy rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="J3.webp">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Men's Parachute Plain Jacket</h3>
+        <p class="font-bold mt-1">Rs. 3,600</p>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20Men's%20Parachute%20Plain%20Jacket"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded-lg hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="bg-white text-navy rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="J4.webp">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Men's Parachute Plain Jacket</h3>
+        <p class="font-bold mt-1">Rs. 3,600</p>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20Men's%20Parachute%20Plain%20Jacket"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded-lg hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="bg-white text-navy rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="https://content.public.markaz.app/markazimagevideo/public/products/1009-167-682955-product-1.webp">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Royal Crest Blue Printed Hoodie Track Suit</h3>
+        <p class="font-bold mt-1">Rs. 1,600</p>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20Men's%20Polyester%20Fleece%20Plain%20Zipper%20Track%20Suit"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded-lg hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="bg-white text-navy rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="https://content.public.markaz.app/markazimagevideo/public/products/1009-167-682954-product-1.webp">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Royal Crest Black Printed Hoodie Track Suit</h3>
+        <p class="font-bold mt-1">Rs. 1,600</p>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20Men's%20Polyester%20Fleece%20Plain%20Zipper%20Track%20Suit"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded-lg hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="bg-white text-navy rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="https://content.public.markaz.app/markazimagevideo/public/products/1990-132-687142-product-1.webp">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Men's Carbon Fiber Black Arabic Aura Watch</h3>
+        <p class="font-bold mt-1">Rs. 1,200</p>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20Men's%20Carbon%20Fiber%20Black%20Arabic%20Aura%20Watch"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded-lg hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="bg-white text-navy rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="3.webp">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Bundle of 3 Decent Plain Sweatshirts for Men</h3>
+        <p class="font-bold mt-1">Rs. 1,299</p>
+        <div class="discount-badge">50% OFF</div>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20Printed%20Graphic%20Tee"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded-lg hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="bg-white text-navy rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="22.webp">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Pack Of 2 Printed Sweatshirt For Men</h3>
+        <p class="font-bold mt-1">Rs. 1,350</p>
+        <div class="discount-badge">50% OFF</div>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20Minimal%20White%20Tee"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded-lg hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="bg-white text-navy rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="2shirts.jpg">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Men's Fleece Printed Sweatshirt, Pack Of 2</h3>
+        <p class="font-bold mt-1">Rs. 1,150</p>
+        <div class="discount-badge">50% OFF</div>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20Minimal%20White%20Tee"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded-lg hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="bg-white text-navy rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="PACK OF 5 SHIRT.jpg">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Jersey Graphic T-Shirt - Pack Of 5</h3>
+        <p class="font-bold mt-1">Rs. 2,000</p>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20Minimal%20White%20Tee"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded-lg hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="bg-white text-navy rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="CASH.jpg">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Men's Jersey T-Shirt with Graphic Sublimation Black</h3>
+        <p class="font-bold mt-1">Rs. 600</p>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20Minimal%20White%20Tee"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded-lg hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="bg-white text-navy rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="CASHWHITE.jpg">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Men's Jersey T-Shirt with Graphic Sublimation White</h3>
+        <p class="font-bold mt-1">Rs. 600</p>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20Minimal%20White%20Tee"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded-lg hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="bg-white text-navy rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="https://content.public.markaz.app/markazimagevideo/public/products/1069-69-445367-product-1.jpg" class="w-full h-64 object-cover">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg"> Cotton Printed Hoodie</h3>
+        <p class="font-bold mt-1">Rs. 1000</p>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20Cotton%20Printed%20Hoodie"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded-lg hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="bg-white text-navy rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="https://content.public.markaz.app/markazimagevideo/public/products/349-69-457636-product-1.jpg">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">Fleece Plain Hoodie</h3>
+        <p class="font-bold mt-1">Rs. 800</p>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20Fleece%20Plain%20Hoodie"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded-lg hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="bg-white text-navy rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition">
+      <img src="https://content.public.markaz.app/markazimagevideo/public/products/349-69-678233-product-1.webp">
+      <div class="p-4">
+        <h3 class="font-semibold text-lg">NINJA Hoodie</h3>
+        <p class="font-bold mt-1">Rs. 1,200</p>
+        <a href="https://wa.me/923374698761?text=I%20want%20to%20order%20NINJA%20Hoodie"
+           target="_blank"
+           class="block text-center mt-4 bg-navy text-white py-2 rounded-lg hover:bg-black transition">
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+
+
+    
+
+  </div>
+</section>
+<section id="CONTACT"></section>
+<!-- ================= FOOTER ================= -->
+<!-- 🔻 Footer -->
+
+    <!-- 🔻 Footer -->
+<footer class="bg-black text-gray-400 mt-16">
+  <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+
+    <!-- Brand -->
+    <div>
+      <h2 class="text-white text-xl font-bold tracking-wide"
+          style="text-shadow:0 0 8px rgba(255,255,255,0.5);">
+        GenZ Fashion Store
+      </h2>
+      <p class="mt-3 text-sm">
+        Trendy • Premium • Streetwear  
+        <br>Wear Your Vibe 🔥
+      </p>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h3 class="text-white font-semibold mb-4">Follow Us</h3>
+
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/genz_fasion_store"
+         target="_blank"
+         class="flex items-center gap-3 mb-4 hover:text-white transition">
+
+        <!-- Instagram SVG -->
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+          <path d="M7.75 2h8.5C19.55 2 22 4.45 22 7.75v8.5C22 19.55 19.55 22 16.25 22h-8.5C4.45 22 2 19.55 2 16.25v-8.5C2 4.45 4.45 2 7.75 2zm0 1.5C5.29 3.5 3.5 5.29 3.5 7.75v8.5c0 2.46 1.79 4.25 4.25 4.25h8.5c2.46 0 4.25-1.79 4.25-4.25v-8.5c0-2.46-1.79-4.25-4.25-4.25h-8.5z"/>
+          <path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0 1.5a3.5 3.5 0 110 7 3.5 3.5 0 010-7z"/>
+          <circle cx="17.5" cy="6.5" r="1"/>
+        </svg>
+
+        <span>@genz_fashion_store</span>
+      </a>
+
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@genz_store_official"
+         target="_blank"
+         class="flex items-center gap-3 hover:text-white transition">
+
+        <!-- TikTok SVG -->
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+          <path d="M16.5 1c.38 2.57 2.2 4.6 4.75 4.9v3.06c-1.75.1-3.39-.48-4.75-1.4v6.4c0 3.9-3.13 7.04-7 7.04a7.04 7.04 0 01-7-7.04 7.04 7.04 0 017-7.04c.35 0 .7.03 1.04.08v3.2a3.7 3.7 0 00-1.04-.15 3.77 3.77 0 103.77 3.77V1h3.23z"/>
+        </svg>
+
+        <span>@genz_store_official</span>
+      </a>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <h3 class="text-white font-semibold mb-4">Order via WhatsApp</h3>
+      <a href="https://wa.me/923374698761"
+         target="_blank"
+         class="hover:text-white transition">
+        📞 +92 337 4698761
+      </a>
+      <p class="text-sm mt-2">
+        Fast Delivery All Over Pakistan 🇵🇰
+      </p>
+    </div>
+
+  </div>
+
+  <div class="border-t border-white/10 text-center py-4 text-sm">
+    © 2026 GenZ Fashion Store. All Rights Reserved.
+  </div>
+</footer>
+
+
+
+<!-- ================= JS ================= -->
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+  tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#0a1a2f'
+          }
+        }
+      }
+    }
+    const slides = document.querySelectorAll(".slide");
+  const dots = document.querySelectorAll(".dot");
+  let index = 0;
+
+  function showSlide(i) {
+    slides.forEach(slide => slide.classList.remove("active"));
+    dots.forEach(dot => dot.classList.replace("bg-white", "bg-gray-400"));
+
+    slides[i].classList.add("active");
+    dots[i].classList.replace("bg-gray-400", "bg-white");
+  }
+
+  function nextSlide() {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  }
+
+  function prevSlide() {
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+      index = i;
+      showSlide(index);
+    });
+  });
+
+  setInterval(nextSlide, 4000);
+  
+  
+        
+    
+</script>
+
+</body>
+</html>
